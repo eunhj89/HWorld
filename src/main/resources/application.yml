@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/hworld"
+    username: "root"
+    password: "ghfkddl82"
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
