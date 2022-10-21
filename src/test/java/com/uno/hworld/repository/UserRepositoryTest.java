@@ -11,6 +11,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -25,10 +26,10 @@ public class UserRepositoryTest {
     public void testUser() {
         User user = User.builder()
                         .userId("test").userNm("test").userPw("qwer1234").userAuth(UserAuth.USER).build();
-        String savedId = userRepository.save(user);
-        User findUser = userRepository.find(savedId);
+        User savedUser = userRepository.save(user);
+        Optional<User> findUser = userRepository.findByUserId(savedUser.getUserId());
 
-        Assertions.assertThat(findUser.getUserId()).isEqualTo(user.getUserId());
-        Assertions.assertThat(findUser).isEqualTo(user);
+        Assertions.assertThat(findUser.get().getUserId()).isEqualTo(user.getUserId());
+        Assertions.assertThat(findUser.get().getUserPw()).isEqualTo(user.getUserPw());
     }
 }

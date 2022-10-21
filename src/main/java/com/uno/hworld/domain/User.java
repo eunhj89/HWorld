@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 @NoArgsConstructor
@@ -50,10 +51,7 @@ public class User extends SystemColumnEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection <GrantedAuthority> collectors = new ArrayList<>();
-        collectors.add(new SimpleGrantedAuthority(UserAuth.ADMIN.getValue()));
-        collectors.add(new SimpleGrantedAuthority(UserAuth.USER.getValue()));
-        return collectors;
+        return Collections.singletonList(new SimpleGrantedAuthority(this.userAuth.getValue()));
     }
 
     @Override
@@ -78,7 +76,7 @@ public class User extends SystemColumnEntity implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

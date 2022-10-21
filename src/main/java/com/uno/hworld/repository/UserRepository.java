@@ -1,24 +1,13 @@
 package com.uno.hworld.repository;
 
 import com.uno.hworld.domain.User;
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
-@Repository
-public class UserRepository {
 
-    @PersistenceContext
-    EntityManager em;
+public interface UserRepository extends JpaRepository<User, String> {
 
-    public String save(User user) {
-        em.persist(user);
-        return user.getUserId();
-    }
+    Optional<User> findByUserId(String userId);
 
-    public User find(String userId) {
-        return Optional.ofNullable(em.find(User.class, userId)).orElse(null);
-    }
+    User save(User user);
 }
