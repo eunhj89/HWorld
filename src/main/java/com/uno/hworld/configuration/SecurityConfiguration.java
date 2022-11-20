@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @AllArgsConstructor
 @Configuration
-public class SecurityConfig {
+public class SecurityConfiguration {
 
     private final UserService userService;
 
@@ -29,7 +29,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                     .authorizeRequests()
-                        .antMatchers("/login", "/signUp", "/accessDenied", "/resources**")
+                        .antMatchers("/login", "/signUp", "/accessDenied", "/resources**", "/swagger-ui**")
                         .permitAll()
                         .antMatchers("/admin/**").hasRole(UserAuth.ADMIN.toString())
                         .antMatchers("/**").hasRole(UserAuth.USER.toString())

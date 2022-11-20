@@ -5,7 +5,6 @@ import {
   onValue,
   onChildAdded,
   onChildRemoved,
-  onChildChanged,
   set,
   remove,
   update,
