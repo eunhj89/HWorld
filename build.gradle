@@ -36,6 +36,10 @@ dependencies {
 	implementation 'org.webjars:stomp-websocket:2.3.3-1'
 	implementation 'com.google.code.gson:gson:2.8.0'
 
+	//embedded-redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	compileOnly 'it.ozimov:embedded-redis:0.7.2'
+
 	//swagger
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
