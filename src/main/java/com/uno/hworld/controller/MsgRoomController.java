@@ -42,6 +42,6 @@ public class MsgRoomController {
     @GetMapping("/room/{roomId}")
     @ResponseBody
     public MsgRoom roomInfo(@PathVariable String roomId) {
-        return msgRoomRepository.findByRoomId(roomId);
+        return msgRoomRepository.findRoomById(roomId);
     }
 }

@@ -1,5 +1,7 @@
 package com.uno.hworld.common;
-
+/**
+ * This handler is used for Websocket
+ */
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uno.hworld.service.MsgService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,11 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 @RequiredArgsConstructor
 public class WebSocketHandler extends TextWebSocketHandler {
+
+    /**
+     * This handler is used for Websocket.
+     * It is not used anymore.
+     */
 
     private final MsgService msgService;
     private final ObjectMapper objectMapper;

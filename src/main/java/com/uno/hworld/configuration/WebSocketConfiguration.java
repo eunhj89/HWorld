@@ -13,6 +13,11 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WebSocketConfiguration implements WebSocketConfigurer {
 
+    /**
+     * This configuration is used for Websocket.
+     * It is not used anymore.
+     */
+
     private final WebSocketHandler webSocketHandler;
 
     @Override

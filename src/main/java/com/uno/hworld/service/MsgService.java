@@ -19,6 +19,12 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class MsgService {
+
+    /**
+     * This handler is used for Websocket.
+     * It is not used anymore.
+     */
+
     private final ObjectMapper objectMapper;
     private Map<String, MessageRoom> msgRooms;
 
@@ -49,6 +55,5 @@ public class MsgService {
             log.error(ex.getMessage(), ex);
         }
     }
-
 
 }

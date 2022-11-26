@@ -1,4 +1,4 @@
-package com.uno.hworld.configuration;
+package com.uno.hworld.exception;
 
 import com.uno.hworld.common.ErrorResponseEntity;
 import com.uno.hworld.exception.BusinessException;
