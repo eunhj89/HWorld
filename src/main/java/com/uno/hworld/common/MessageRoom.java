@@ -13,6 +13,12 @@ import java.util.Set;
 @Getter
 @Setter
 public class MessageRoom {
+
+    /**
+     * This source is used for Websocket.
+     * It is not used anymore.
+     */
+
     private String roomId;
     private Set<WebSocketSession> sessions = new HashSet<>();
 

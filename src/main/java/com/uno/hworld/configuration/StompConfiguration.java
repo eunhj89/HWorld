@@ -11,6 +11,11 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class StompConfiguration implements WebSocketMessageBrokerConfigurer {
 
+    /**
+     * This configuration is used for STOMP.
+     * It is not used anymore.
+     */
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws-chat")
