@@ -16,19 +16,19 @@ import java.util.*;
 @Repository
 public class MsgRoomRepository {
 
-    private final RedisMessageListenerContainer redisMessageListenerContainer;
+    // private final RedisMessageListenerContainer redisMessageListenerContainer;
 
-    private final RedisSubscriber redisSubscriber;
+    // private final RedisSubscriber redisSubscriber;
 
     private static final String MSG_ROOMS = "MSG_ROOM";
     private final RedisTemplate<String, Object> redisTemplate;
     private HashOperations<String, String, MsgRoom> opsHashMsgRoom;
-    private Map<String, ChannelTopic> topics;
+    // private Map<String, ChannelTopic> topics;
 
     @PostConstruct
     private void init() {
         opsHashMsgRoom = redisTemplate.opsForHash();
-        topics = new HashMap<>();
+        // topics = new HashMap<>();
     }
 
     public List<MsgRoom> findAllRoom() {
@@ -44,7 +44,7 @@ public class MsgRoomRepository {
         opsHashMsgRoom.put(MSG_ROOMS, msgRoom.getRoomId(), msgRoom);
         return msgRoom;
     }
-
+    /*
     public void enterMsgRoom(String roomId) {
         ChannelTopic topic = topics.get(roomId);
         if (topic == null) {
@@ -57,7 +57,7 @@ public class MsgRoomRepository {
     public ChannelTopic getTopic(String roomId) {
         return topics.get(roomId);
     }
-
+    */
 
     /**
      * This handler is used for STOMP.
