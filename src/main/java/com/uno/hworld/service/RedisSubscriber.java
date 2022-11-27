@@ -28,4 +28,13 @@ public class RedisSubscriber implements MessageListener {
             log.error(e.getMessage());
         }
     }
+
+    public void sendMessage(String publishMessage) {
+        try {
+            Message message = objectMapper.readValue(publishMessage, Message.class);
+            messagingTemplate.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+    }
 }

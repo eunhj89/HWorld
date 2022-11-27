@@ -1,6 +1,7 @@
 HELP.md
 .gradle
 build/
+log/
 *.yml
 *.yaml
 !gradle/wrapper/gradle-wrapper.jar
