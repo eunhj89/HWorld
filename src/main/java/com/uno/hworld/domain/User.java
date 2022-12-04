@@ -7,10 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 @NoArgsConstructor
 @Entity
@@ -38,6 +35,9 @@ public class User extends SystemColumnEntity implements UserDetails {
 
     @Column(name = "LOGIN_FAIL_COUNT", nullable = false)
     private int loginFailCount = 0;
+
+    @OneToMany(mappedBy = "user")
+    private List<FileInfo> fileInfos = new ArrayList<>();
 
     @Builder
     public User(String userId, String userPw, String userNm, UserAuth userAuth, Boolean isLock, int loginFailCount) {
