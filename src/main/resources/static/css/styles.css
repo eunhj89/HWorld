@@ -108,7 +108,7 @@ button:active {
 .Character_sprite .menu{
   position: absolute;
   cursor: default;
-  z-index: -1;
+  z-index: -10000;
   width: 3em;
   height: 3em;
   display: flex;
@@ -122,18 +122,17 @@ button:active {
   transform-origin: 1.5em;
   transition: 0.5s;
   transition-delay:calc(0.1s * var(--i));
-  transform: rotate(0deg) translateX(150%);
+  transform: rotate(0deg) translateX(200%);
 }
 .Character_sprite.active .menu li{
   transform: rotate(calc(360deg / 4 * -1 * var(--i)));
 }
 .Character_sprite .menu li a{
-  width: 0.7em;
-  height: 0.7em;
+  width: 0.65em;
+  height: 0.65em;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba( 255, 255, 255, 0.5 );
   border-radius: 50%;
   transform: rotate(calc(360deg / 4 * var(--i)));
 }

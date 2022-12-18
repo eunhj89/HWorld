@@ -213,30 +213,47 @@ function getRandomSafeSpot() {
       //Fires whenever a new node is added the tree
       const addedPlayer = snapshot.val();
       const characterElement = document.createElement("div");
+      const allCharacterElements = document.getElementsByClassName("Character_sprite");
       characterElement.classList.add("Character", "grid-cell");
       if (addedPlayer.id === playerId) {
         characterElement.classList.add("you");
-      }
-      characterElement.addEventListener("click", (event) => {
-        event.target.classList.toggle('active');
-        console.log('1');
-      })
-      characterElement.innerHTML = (`
+
+        characterElement.innerHTML = (`
+        <div class="Character_shadow grid-cell"></div>
+        <div class="Character_sprite grid-cell"></div>
+        <div class="Character_name-container">
+          <span class="Character_name"></span>
+          <span class="Character_coins">0</span>
+        </div>
+        <div class="Character_you-arrow"></div>
+      `);
+
+      } else {
+        characterElement.addEventListener("click", (event) => {
+          for (let characterElement of allCharacterElements) {
+            if (characterElement.classList.contains('active') && characterElement != event.target) {
+              characterElement.classList.remove('active');
+            }
+          }
+          event.target.classList.toggle('active');
+        });
+
+        characterElement.innerHTML = (`
         <div class="Character_shadow grid-cell"></div>
         <div class="Character_sprite grid-cell">
           <div class="menu">
             <div class="toggle"></div>
             <li style="--i:0;">
-            <a href-"#"><ion-icon name="person-outline"></ion-icon></a>
+            <a href="#"><ion-icon name="person-outline"></ion-icon></a>
             </li>
             <li style="--i:1;">
-                <a href-"#"><ion-icon name="chatbubbles-outline"></ion-icon></a>
+                <a href="#"><ion-icon name="chatbubbles-outline"></ion-icon></a>
             </li>
             <li style="--i:2;">
-                <a href-"#"><ion-icon name="paper-plane-outline"></ion-icon></a>
+                <a href=""#"><ion-icon name="paper-plane-outline"></ion-icon></a>
             </li>
             <li style="--i:3;">
-                <a href-"#"><ion-icon name="gift-outline"></ion-icon></a>
+                <a href=""#"><ion-icon name="gift-outline"></ion-icon></a>
             </li>
           </div>
         </div>
@@ -246,6 +263,8 @@ function getRandomSafeSpot() {
         </div>
         <div class="Character_you-arrow"></div>
       `);
+      }
+
       playerElements[addedPlayer.id] = characterElement;
 
       //Fill in some initial state
