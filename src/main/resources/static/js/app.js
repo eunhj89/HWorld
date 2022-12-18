@@ -217,9 +217,29 @@ function getRandomSafeSpot() {
       if (addedPlayer.id === playerId) {
         characterElement.classList.add("you");
       }
+      characterElement.addEventListener("click", (event) => {
+        event.target.classList.toggle('active');
+        console.log('1');
+      })
       characterElement.innerHTML = (`
         <div class="Character_shadow grid-cell"></div>
-        <div class="Character_sprite grid-cell"></div>
+        <div class="Character_sprite grid-cell">
+          <div class="menu">
+            <div class="toggle"></div>
+            <li style="--i:0;">
+            <a href-"#"><ion-icon name="person-outline"></ion-icon></a>
+            </li>
+            <li style="--i:1;">
+                <a href-"#"><ion-icon name="chatbubbles-outline"></ion-icon></a>
+            </li>
+            <li style="--i:2;">
+                <a href-"#"><ion-icon name="paper-plane-outline"></ion-icon></a>
+            </li>
+            <li style="--i:3;">
+                <a href-"#"><ion-icon name="gift-outline"></ion-icon></a>
+            </li>
+          </div>
+        </div>
         <div class="Character_name-container">
           <span class="Character_name"></span>
           <span class="Character_coins">0</span>

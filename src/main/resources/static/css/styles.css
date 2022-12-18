@@ -1,12 +1,12 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing:border-box;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
   height: 100%;
-  background: linear-gradient(180deg, #64BEFF -50%, #6e96ff 69.71%, #2a65ff 150%);
+  background: linear-gradient(0deg, #8460ed, #ff1252);
   font-family: 'Source Sans Pro', sans-serif;
   display: flex;
   align-items: center;
@@ -74,6 +74,9 @@ button:active {
 /* Characters */
 .grid-cell {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 16px;
   height: 16px;
 }
@@ -88,17 +91,51 @@ button:active {
 }
 .Character_you-arrow {
   display: none;
-  position: absolute;
-  top:-18px;
-  left: 5px;
+  position: relative;
+  top:-1em;
   width: 7px;
   height: 5px;
   background: url(/../images/arrow.png) no-repeat no-repeat;
 }
+.Character_sprite.grid-cell {
+  cursor: pointer;
+}
 .Character_sprite {
-  overflow: hidden;
+  overflow: visible;
   top: -3px;
   background: url(/../images/characters.png);
+}
+.Character_sprite .menu{
+  position: absolute;
+  cursor: default;
+  z-index: -1;
+  width: 3em;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Character_sprite .menu li{
+  position: absolute;
+  left: 0;
+  list-style: none;
+  transform-origin: 1.5em;
+  transition: 0.5s;
+  transition-delay:calc(0.1s * var(--i));
+  transform: rotate(0deg) translateX(150%);
+}
+.Character_sprite.active .menu li{
+  transform: rotate(calc(360deg / 4 * -1 * var(--i)));
+}
+.Character_sprite .menu li a{
+  width: 0.7em;
+  height: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba( 255, 255, 255, 0.5 );
+  border-radius: 50%;
+  transform: rotate(calc(360deg / 4 * var(--i)));
 }
 .Character[data-direction="right"] .Character_sprite {
   background-position-x: 16px;
