@@ -28,6 +28,9 @@ public class MsgRoomRepository {
     @PostConstruct
     private void init() {
         opsHashMsgRoom = redisTemplate.opsForHash();
+        MsgRoom msgRoom = MsgRoom.create("all_chat");
+        msgRoom.setRoomId("all_chat_roomId");
+        opsHashMsgRoom.put(MSG_ROOMS, msgRoom.getRoomId(), msgRoom);
         // topics = new HashMap<>();
     }
 

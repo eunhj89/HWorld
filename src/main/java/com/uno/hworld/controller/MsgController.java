@@ -3,9 +3,11 @@ package com.uno.hworld.controller;
 import com.uno.hworld.common.JwtTokenProvider;
 import com.uno.hworld.common.Message;
 import com.uno.hworld.common.MessageRoom;
+import com.uno.hworld.exception.BusinessException;
 import com.uno.hworld.repository.MsgRoomRepository;
 import com.uno.hworld.service.MsgService;
 import com.uno.hworld.service.RedisPublisher;
+import com.uno.hworld.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
@@ -26,12 +28,13 @@ public class MsgController {
     private final RedisTemplate<String, Object> redisTemplate;
     private final JwtTokenProvider jwtTokenProvider;
     private final ChannelTopic channelTopic;
+    private final UserService userService;
 
 
     @MessageMapping("/chat/message")
-    public void message(Message message, @Header("token") String token) {
+    public void message(Message message, @Header("token") String token) throws BusinessException {
         String id = jwtTokenProvider.getUserNameFromJwt(token);
-        message.setSender(id);
+        message.setSender(userService.findUser(id).getUserNm());
 
         if (Message.MessageType.ENTER.equals(message.getMessageType())) {
             //msgRoomRepository.enterMsgRoom(message.getRoomId());

@@ -4,6 +4,7 @@ import com.uno.hworld.common.UserAuth;
 import com.uno.hworld.domain.User;
 import com.uno.hworld.domain.UserSessionVo;
 import com.uno.hworld.dto.UserDto;
+import com.uno.hworld.exception.BusinessException;
 import com.uno.hworld.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+
+import static com.uno.hworld.common.ErrorCode.INVALID_LOGIN;
 
 @RequiredArgsConstructor
 @Service
@@ -40,6 +43,11 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUserId(username).orElseThrow(() -> new UsernameNotFoundException("User is not found."));
         httpSession.setAttribute("user", new UserSessionVo(user));
+        return user;
+    }
+
+    public User findUser(String userId) throws BusinessException {
+        User user = userRepository.findByUserId(userId).orElseThrow(() -> new BusinessException(INVALID_LOGIN));
         return user;
     }
 }
