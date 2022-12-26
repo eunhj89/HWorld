@@ -4,7 +4,9 @@ import com.uno.hworld.common.JwtTokenProvider;
 import com.uno.hworld.common.MsgRoom;
 import com.uno.hworld.domain.User;
 import com.uno.hworld.dto.UserDto;
+import com.uno.hworld.exception.BusinessException;
 import com.uno.hworld.repository.MsgRoomRepository;
+import com.uno.hworld.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,7 @@ public class MsgRoomController {
 
     private final MsgRoomRepository msgRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
+    private final UserService userService;
 
     @GetMapping("/room")
     public String rooms() {
@@ -53,7 +56,7 @@ public class MsgRoomController {
 
     @GetMapping("/user")
     @ResponseBody
-    public UserDto getUserInfo() {
+    public UserDto getUserInfo() throws BusinessException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = auth.getName();
         return UserDto.builder().userId(userId).token(jwtTokenProvider.generateToken(userId)).build();

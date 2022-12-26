@@ -29,7 +29,57 @@ html, body {
   padding: 1em;
   display: flex;
   gap: 0.5em;
-  align-items: flex-end
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.player-chat-div {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  padding: 1em;
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.player-chat-show-div {
+  border: 3px solid #222034;
+  width: 30em;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  height: 10em;
+  border-radius: 4px;
+  outline: 0;
+  opacity: 0.5;
+  transition: 0.4s;
+}
+
+.player-chat-show-div:hover {
+  opacity: 1;
+}
+
+.player-chat-show-ul {
+  list-style: none;
+}
+
+.player-chat-show-li {
+
+}
+
+.player-chat-enter-div {
+  bottom: 0;
+  left:0;
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+.player-chat-enter-input {
+  width: 30em !important;
 }
 
 label {
