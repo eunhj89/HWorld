@@ -23,7 +23,6 @@ public class MsgRoomController {
 
     private final MsgRoomRepository msgRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
-    private final UserService userService;
 
     @GetMapping("/room")
     public String rooms() {
@@ -56,7 +55,7 @@ public class MsgRoomController {
 
     @GetMapping("/user")
     @ResponseBody
-    public UserDto getUserInfo() throws BusinessException {
+    public UserDto getUserInfo() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = auth.getName();
         return UserDto.builder().userId(userId).token(jwtTokenProvider.generateToken(userId)).build();

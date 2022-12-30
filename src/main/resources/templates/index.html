@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
   <head>
     <title>Multiplayer Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
   </head>
   <body>
-    <div class="game-container">
+  <sec:authorize access="isAuthenticated()">
+    <span id="user_id" hidden sec:authentication="name"></span>
+    <span id="user_name" hidden th:text="${data}"></span>
+    <span id="user_auth" hidden sec:authentication="principal.authorities"></span>
+  </sec:authorize>
+
+
+  <div class="game-container">
     </div>
     <div class="player-info">
-      <div>
-        <label for="player-name">Your Name</label>
-        <input id="player-name" maxlength="10" type="text" />
-      </div>
       <div>
         <button id="player-color">Change Color</button>
       </div>
