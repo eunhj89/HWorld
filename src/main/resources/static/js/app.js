@@ -135,9 +135,7 @@ function getRandomSafeSpot() {
   let coinElements = {};
 
   const gameContainer = document.querySelector(".game-container");
-  const playerNameInput = document.querySelector("#player-name");
   const playerColorButton = document.querySelector("#player-color");
-
 
   function placeCoin() {
     const { x, y } = getRandomSafeSpot();
@@ -145,11 +143,9 @@ function getRandomSafeSpot() {
       x: x,
       y: y
     });
-
-    const coinTimeouts = [2000, 3000, 4000, 5000];
     setTimeout(() => {
       placeCoin();
-    }, randomFromArray(coinTimeouts));
+    }, 60000);
   }
 
   function attemptGrabCoin(x, y) {
@@ -321,15 +317,6 @@ function getRandomSafeSpot() {
       delete coinElements[keyToRemove];
     })
 
-    //Updates player name with text input
-    playerNameInput.addEventListener("change", (e) => {
-      const newName = e.target.value || createName();
-      playerNameInput.value = newName;
-      update(playerRef, {
-        name: newName
-      });
-    })
-
     //Update player color on button click
     playerColorButton.addEventListener("click", () => {
       const mySkinIndex = playerColors.indexOf(players[playerId].color);
@@ -345,15 +332,13 @@ function getRandomSafeSpot() {
   }
 
   onAuthChanged((user) => {
-    console.log(user);
     if (user) {
+      console.log(user);
       //You're logged in!
-      playerId = user.uid;
+      playerId = btoa(document.getElementById("user_id").innerText);
       playerRef = getRef(`players/${playerId}`);
 
-      const name = createName();
-      playerNameInput.value = name;
-
+      const name = document.getElementById("user_name").innerText;
       const {x, y} = getRandomSafeSpot();
       const color = randomFromArray(playerColors);
       set(playerRef, {
