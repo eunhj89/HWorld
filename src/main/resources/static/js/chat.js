@@ -44,6 +44,18 @@
         li.setAttribute('class', 'player-chat-show-li');
         li.appendChild(document.createTextNode(rec.sender + ' : ' + rec.message));
         playerChatShowList.appendChild(li);
+
+        const allCharacterNames = document.getElementsByClassName("Character_name");
+        for (let characterName of allCharacterNames) {
+            if (characterName.innerHTML == rec.sender) {
+                characterName.parentElement.nextElementSibling.children[0].innerHTML = rec.sender + ' : ' + rec.message;
+                characterName.parentElement.nextElementSibling.style.display = "flex";
+                setTimeout(function() {
+                    characterName.parentElement.nextElementSibling.children[0].innerHTML = '';
+                    characterName.parentElement.nextElementSibling.style.display = "none";
+                }, 5000);
+            }
+        }
     };
 
     create();
