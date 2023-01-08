@@ -221,6 +221,9 @@ function getRandomSafeSpot() {
           <span class="Character_name"></span>
           <span class="Character_coins">0</span>
         </div>
+        <div class="Character_chat_container blink">
+          <p class="Character_chat_contents"></p>
+        </div>
         <div class="Character_you-arrow"></div>
       `);
 
@@ -246,16 +249,19 @@ function getRandomSafeSpot() {
                 <a href="#"><ion-icon name="chatbubbles-outline"></ion-icon></a>
             </li>
             <li style="--i:2;">
-                <a href=""#"><ion-icon name="paper-plane-outline"></ion-icon></a>
+                <a href="#"><ion-icon name="paper-plane-outline"></ion-icon></a>
             </li>
             <li style="--i:3;">
-                <a href=""#"><ion-icon name="gift-outline"></ion-icon></a>
+                <a href="#"><ion-icon name="gift-outline"></ion-icon></a>
             </li>
           </div>
         </div>
         <div class="Character_name-container">
           <span class="Character_name"></span>
           <span class="Character_coins">0</span>
+        </div>
+        <div class="Character_chat_container blink">
+          <p class="Character_chat_contents"></p>
         </div>
         <div class="Character_you-arrow"></div>
       `);

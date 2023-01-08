@@ -1,7 +1,7 @@
 html,
 body {
     height: 100%;
-    background-color: #222d32 !important;
+    background: linear-gradient(0deg, #8460ed, #ff1252);
     font-family: 'Dongle', sans-serif;
 }
 
